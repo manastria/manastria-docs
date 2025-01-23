@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+    {{ super() }}
+<!-- Test -->
+    {# Vérifier si la page possède des meta-données #}
+    {% if page and page.meta %}
+
+        {# Parcourir chaque propriété du front matter #}
+        {% for key, value in page.meta.items() %}
+
+            {# Vérifier si la clé commence par "meta." #}
+            {% if key.startswith("meta.") %}
+                {# Extraire la partie après "meta." pour le nom de la propriété #}
+                <meta name="{{ key[5:] | e }}" content="{{ value | e }}" />
+            {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,84 @@
+site_name: Activités
+site_description: Activités
+repo_url: https://github.com/manastria/manastria-docs
+repo_name: manastria-docs
+
+extra_css:
+    - stylesheets/extra.css
+extra_javascript:
+    - assets/extra.js
+theme:
+    name: material
+    custom_dir: overrides
+    language: fr
+    features:
+        - navigation.tabs
+        - navigation.sections
+        - navigation.indexes
+        - navigation.top
+        - navigation.footer
+        - content.action.edit
+        - toc.integrate
+        - content.code.copy
+    font:
+        text: Roboto
+        code: Roboto Mono
+    palette:
+        - scheme: default
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
+        - scheme: slate
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light mode
+
+markdown_extensions:
+    - markdown.extensions.extra
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.keys
+    - pymdownx.tabbed:
+          alternate_style: true
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+    - admonition
+    - pymdownx.details
+    - footnotes
+    - attr_list
+    - def_list
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+    - search:
+          lang: fr
+    - minify:
+          minify_html: !ENV [ENABLE_MINIFY, true]
+          minify_js: !ENV [ENABLE_MINIFY, true]
+          minify_css: !ENV [ENABLE_MINIFY, true]
+          htmlmin_opts:
+              remove_comments: !ENV [ENABLE_MINIFY, true]
+          cache_safe: !ENV [ENABLE_MINIFY, true]
+          js_files:
+              - assets/extra.js
+          css_files:
+              - stylesheets/extra.css
+
+nav:
+    - Accueil: index.md
+    - Activités:
+          - SSH: activites/ssh_linux/ssh1.md
+    - À propos: about.md

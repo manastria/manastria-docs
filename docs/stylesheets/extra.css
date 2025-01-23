@@ -1,0 +1,55 @@
+/* Titre niveau 1 */
+.md-typeset h1 {
+  color: var(--md-primary-fg-color);
+  font-size: 2.5em;
+  font-weight: 700;
+  border-bottom: 4px solid var(--md-primary-fg-color);
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+}
+
+/* Titre niveau 2 */
+.md-typeset h2 {
+  color: var(--md-primary-fg-color);
+  font-size: 1.8em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--md-primary-fg-color--light);
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* Titre niveau 3 */
+.md-typeset h3 {
+  color: var(--md-primary-fg-color--dark);
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-top: 1.2em;
+}
+
+/* Titre niveau 4 */
+.md-typeset h4 {
+  color: var(--md-primary-fg-color--dark);
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-top: 1em;
+}
+
+/* Ajouter un espacement après les titres */
+.md-typeset h1 + *,
+.md-typeset h2 + *,
+.md-typeset h3 + *,
+.md-typeset h4 + * {
+  margin-top: 1em;
+}
+
+
+/* Le code qui utiliser les caractères `─┬─` ou `└─` n'est pas correctement aligné par défaut. Ce style permet de remédier à cela */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap');
+
+.custom-code  code {
+  font-family: "Consolas", "Source Code Pro", monospace;
+  line-height: 1.2;
+  letter-spacing: 0; /* Suppression des espaces supplémentaires */
+  font-variant-ligatures: none; /* Désactive les ligatures */
+}
