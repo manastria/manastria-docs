@@ -2,7 +2,7 @@ Site officiel de mkdocs : https://www.mkdocs.org/
 
 Site officiel de mkdocs-material : https://squidfunk.github.io/mkdocs-material/
 
-Site web : https://manastria.github.io/proclab-unix-docs/
+Site web : <https://manastria.github.io/manastria-docs/>
 
 
 ```
@@ -20,4 +20,3 @@ pipenv run python -m http.server
 ```powershell
 $Env:ENABLE_MINIFY = "false"; pipenv run mkdocs serve; Remove-Item Env:ENABLE_MINIFY
 ```
-
