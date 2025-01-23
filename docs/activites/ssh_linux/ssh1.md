@@ -34,7 +34,7 @@ Cette séparation pose un défi intéressant : comment permettre aux ordinateurs
     1. Installez VirtualBox ou VMware sur votre PC physique
     2. Créez une machine virtuelle Debian 12 avec une interface réseau en mode Bridge
     3. Configurez l'adresse IP statique sur la VM Debian :
-        1. Adresse IP : 192.168.1.10
+        1. Adresse IP : 192.168.10.10
         2. Masque : 255.255.255.0
         3. Passerelle : pour l'instant, pas nécessaire
 2. **Configuration du switch**
@@ -46,9 +46,9 @@ Cette séparation pose un défi intéressant : comment permettre aux ordinateurs
 3. **Installation et configuration du serveur DHCP**
     1. Utilisez votre fiche technique pour installer le package `isc-dhcp-server`
     2. Configurez le serveur DHCP avec les paramètres suivants :
-        1. Plage d'adresses : `192.168.1.100` à `192.168.1.200`
+        1. Plage d'adresses : `192.168.10.50` à `192.168.10.100`
         2. Masque de sous-réseau : `255.255.255.0`
-        3. Passerelle : `192.168.1.1` (pour plus tard)
+        3. Passerelle : `192.168.10.1` (pour plus tard)
         4. Serveur DNS : `8.8.8.8`
 
 ### Tests de validation
@@ -86,14 +86,14 @@ sudo tail -f /var/log/syslog | grep dhcp
 
     ➜ Vous devez observer :
 
-    1. Une adresse IP dans la plage `192.168.1.100-200`
+    1. Une adresse IP dans la plage `192.168.10.50-100`
         1. Le masque `255.255.255.0`
-        2. La passerelle `192.168.1.1`
+        2. La passerelle `192.168.10.1`
         3. Le serveur DNS `8.8.8.8`
     2. **Tests de connectivité**
     ```
     # Depuis le client
-    ping 192.168.1.10  # Vers le serveur DHCP
+    ping 192.168.10.10  # Vers le serveur DHCP
 
     # Depuis le serveur
     ping [IP_obtenue_par_le_client]
