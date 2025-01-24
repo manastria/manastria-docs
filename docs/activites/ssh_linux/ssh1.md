@@ -153,21 +153,25 @@ Pour cette phase, nous allons créer :
         1. VLAN 10 : « INFORMATIQUE »
         2. VLAN 20 : « EMPLOYES »
     3. Configurez les ports :
-        1. Fa0/1 : mode trunk (vers le routeur), il est préférable d’utiliser un port gigabit du switch
-        2. Fa0/2 : VLAN 10 (serveur DHCP)
-        3. Fa0/3 : VLAN 20 (client)
+        1. Gi0/1 : mode trunk (vers le routeur)
+        2. Fa0/1 : VLAN 10 (serveur DHCP)
+        3. Fa0/2 : VLAN 20 (client)
 2. **Configuration du routeur**
     1. Connectez le routeur au port Fa0/1 du switch
     2. Créez les sous-interfaces pour chaque VLAN :
         1. G0/0.10 : `192.168.10.1/24` (passerelle VLAN 10)
         2. G0/0.20 : `192.168.20.1/24` (passerelle VLAN 20)
 3. **Modification du serveur DHCP**
-    1. Modifiez l'adresse IP de la VM Debian :
+    1. Vérifiez l'adresse IP de la VM Debian :
         1. Nouvelle IP : `192.168.10.10/24`
         2. Passerelle : `192.168.10.1`
-    2. Ajustez la configuration DHCP pour le VLAN 10 :
-        1. Plage : `192.168.10.100` à `192.168.10.200`
+    2. Vérifiez la configuration DHCP pour le VLAN 10 :
+        1. Plage : `192.168.10.50` à `192.168.10.100`
         2. Passerelle : `192.168.10.1`
+        3. DNS : `8.8.8.8`
+    3. Ajouter la configuration DHCP pour le VLAN 20 :
+        1. Plage : `192.168.20.50` à `192.168.20.100`
+        2. Passerelle : `192.168.20.1`
         3. DNS : `8.8.8.8`
 
 ### Tests de validation étape par étape
@@ -182,8 +186,8 @@ Pour cette phase, nous allons créer :
     ➜ Vérifiez que :
 
     1. Les VLANs 10 et 20 sont créés
-        1. Fa0/2 est bien dans VLAN 10
-        2. Fa0/3 est bien dans VLAN 20
+        1. Fa0/1 est bien dans VLAN 10
+        2. Fa0/2 est bien dans VLAN 20
     2. **Vérification du trunk**
 
     ```
@@ -191,7 +195,7 @@ Pour cette phase, nous allons créer :
     show interfaces trunk
     ```
 
-    ➜ Le port Fa0/1 doit apparaître comme trunk
+    ➜ Le port Gi0/1 doit apparaître comme trunk
 
 2. **Test des sous-interfaces du routeur**
 
